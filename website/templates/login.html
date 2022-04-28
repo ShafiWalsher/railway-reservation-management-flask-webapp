@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% block title %} Login - Aincrad Railways {% endblock %}
+
+{% block content%}
+        <div class="container-xxl py-5 my-5">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-5 bg-light py-4 px-5 rounded-3 shadow-lg">
+                    <div class="text-center mb-3">
+                        <img class="img-fluid form-logo" width="auto" height="120" src="/static/assets/Logo.png" alt="aincrad logo">
+                    </div>
+                    <div class="divider div-transparent div-arrow-down"></div>
+                    <p class="mb-2 fs-4 text-center fw-bold">Login To Your Account.</p>
+                    <p class="mb-3 fs-6 text-center">Plese enter your details.</p>
+                    <form method="POST">
+                        <!-- Email input -->
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        
+                        <!-- Password input -->
+                        <div class="form-floating mb-4">
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                    
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-dark btn-block mb-4">Sign in</button>
+                    
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <a class="text-primary" href="#">Forgot password?</a>
+                            <p>Don't have a account? <a href="/sign-up" class="text-primary">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

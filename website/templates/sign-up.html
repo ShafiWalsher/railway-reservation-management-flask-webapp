@@ -1,0 +1,62 @@
+
+{% extends "base.html" %}
+{% block title %} SignUp - Aincrad Railways {% endblock %}
+
+{% block content%}
+    <div class="container-xxl py-4 my-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 bg-light bg-gradient py-3 px-5 rounded-3 shadow-lg">
+                <div class="text-center mb-3">
+                    <img class="img-fluid form-logo" width="auto" height="120" src="/static/assets/Logo.png" alt="">
+                </div>
+                <div class="divider div-transparent div-arrow-down my-5"></div>
+                <p class="mb-2 fs-4 text-center fw-bold">Register Your Account.</p>
+                <p class="mb-3 fs-6 text-center">Plese enter your details.</p>
+                <form action="" method="POST">
+                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="First name" name="fname">
+                                <label for="floatingInput">First name</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInput" placeholder="Last name" name="lname">
+                                <label for="floatingInput">Last name</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                      
+                    <!-- Password input -->
+                    <div class="form-floating mb-4">
+                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password1">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+                    <!-- Confirm Password input -->
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="Confirm password" name="password2">
+                        <label for="floatingPassword">Confirm password</label>
+                    </div>
+                
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-dark btn-block mb-4">Register</button>
+                
+                    <!-- Signin buttons -->
+                    <div class="text-center">
+                        <p>Already have a account? <a href="/login" class="text-primary">Signin</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

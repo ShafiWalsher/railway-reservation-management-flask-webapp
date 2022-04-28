@@ -1,0 +1,196 @@
+
+{% extends "base.html" %}
+{% block title %} Book Tickets - Aincrad Railways {% endblock %}
+
+{% block content %}
+
+  <!--form & Info-->
+  <div class="container-xxl">
+      <div class="row justify-content-around align-items-start my-5">
+
+          <!--Search Train Form & Book Ticket Form-->
+          <div class="card col-md-5 text-center py-5 px-5">
+            <div class="mb-3">
+                <h3 class="fw-bold">Search For Train Details</h3>
+                <p class="fst-italic">Please provide the detailes below.</p>
+            </div>
+            <div class="divider div-transparent div-arrow-down mt-1 mb-5"></div>
+            <!--Search Train Form-->
+            <form method="POST" class="mt-3">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row mb-4">
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="loc-from" name="loc_from">
+                            <label for="floatingInput">From</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="loc-to" name="loc_to">
+                            <label for="floatingInput">To</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-dark col-6 mb-2" name="search_submit"><i class="fas fa-search pe-2"></i>Search</button>
+                <p class="text-danger fst-italic mb-4" style="opacity: .9;">Note : Check out the available routes first.!!!</p>
+              </form>
+            <!--Search Train Form-->
+
+            <!--Display Search Results-->
+            {% if cities_source and cities_dest %}
+              <div>
+                {% for cs in cities_source%}
+                  {% for cd in cities_dest%}
+                    {% if cs.train_id == cd.train_id %}
+                      <div class="card px-4 py-3 my-3 mx-1 mx-auto text-left shadow-sm" style="width:80%; list-style:none; background-color: rgba(0,0,0,.06);">
+                        <li class="fw-bold text-center text-uppercase">{% print(cs.name) %}<i class="fas fa-long-arrow-alt-right px-2"></i>{% print(cd.name) %}</li>
+                        <hr class="mx-auto my-2" width="60%" >
+                        <li><span class="fw-bold">Platform No : </span>{% print(cs.platform_id) %}</li>
+                        <li><span class="fw-bold">Train No : </span>{% print(cs.train_id) %}</li>
+                        {% for train in trains %}
+                          {% if cs.train_id == train.id %}
+                            {% set t_name = train.name%}
+                              <li><span class="fw-bold">Train Name : </span>{% print(t_name) %}</li>
+                          {% endif %}
+                        {% endfor %}
+                        <li><span class="fw-bold">Arrival Time : </span>{% print(cs.arrival) %}</li>
+                        <li><span class="fw-bold">Depart Time : </span>{% print(cs.depart) %}</li>
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+
+            <hr class="divider my-5"/>
+            
+            <!--Book Train Form-->
+            <div class="mb-3">
+              <h3 class="fw-bold">Book Your Train Ticket</h3>
+              <p class="fst-italic">Please enter the booking detailes below.</p>
+            </div>
+            <div class="divider div-transparent div-arrow-down mt-1 mb-5"></div>
+            <form method="POST" class="mt-3">
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name">
+                            <label for="floatingInput">Name</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="floatingInput" placeholder="mobile" name="mobile" pattern="[0-9]{10}">
+                        <label for="floatingInput">Mobile</label>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Train No. -->
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="floatingInput" placeholder="train no" name="train_no">
+                  <label for="floatingInput">Enter train no.</label>
+                </div>
+
+                <!--From & To-->
+                <div class="row mb-3">
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="From" name="from">
+                      <label for="floatingInput">From</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-floating mb-3">
+                      <input type="text" class="form-control" id="floatingInput" placeholder="To" name="to">
+                      <label for="floatingInput">To</label>
+                    </div>
+                  </div>
+                </div>
+                  
+                <!-- Train Class input -->
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01"><i class="fab fa-atlassian"></i></label>
+                  <select class="form-select p-3" id="inputGroupSelect01" name="train_cls">
+                    <option selected>Select Train Class...</option>
+                    <option value="Ordinary Seat">Ordinary Seat</option>
+                    <option value="Green Car">Green Car</option>
+                    <option value="Grand Class">Grand Class</option>
+                  </select>
+                </div>
+                
+                <!--Booking Date -->
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control" id="floatingInput" placeholder="booking date" name="booking_date">
+                  <label for="floatingInput">Booking date</label>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-dark col-6 my-4" name="book_ticket_submit">Book Ticket</button>
+            </form>
+          </div>
+          <!--Book Train Form-->
+          
+
+          <!--Right side info-->
+          <div class="card col-md-5 text-center py-5 px-5">
+            <div class="mb-1">
+                <img src="/static/assets/Logo.png" alt="aincrad-logo" width="150" height="auto" class="img-fluid fs-5 mb-4">
+                <p class="lead fst-italic">Before Booking train tickets be sure to check out the availabe train for your convinient time. </p>
+            </div>
+            <hr class="mb-4">
+            <div>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Animi ducimus harum aperiam ratione delectus commodi quasi fuga, illum autem voluptate excepturi. Excepturi consequatur vero sit blanditiis nihil ex dolores cum.</p>
+                {% if trains %}
+                  <h4 class="text-left mt-5 mb-3"><i class="fas fa-route pe-2"></i></i>Available Routes</h4>
+                  <div class="my-3 text-left" style="list-style: none;">
+                    {% for train in trains %}
+                      <div class="card mb-3 p-4 ms-0 shadow-sm" style="background-color: rgba(0,0,0,.03);">
+                        <p class="fw-bold fs-5 lh-1 text-center">{% print(train.name) %}</p>
+                        <hr class="mx-auto mt-0 mb-3" width="70%" >
+                        <li><span class="fw-bold">Train ID : {% print(train.id) %}</span></li>
+                        <li><span class="fw-bold">From/To :</span> {% print(train.route) %}</li>
+                        <li><span class="fw-bold">Distance :</span> {% print(train.distance) %}</li>
+                        <li><span class="fw-bold">Speed :</span> {% print(train.speed) %}</li>
+                        <li><span class="fw-bold">Main Stops :</span> {% print(train.main_stops) %}</li>
+                      </div>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+                <h4 class="text-left mt-5 mb-3"><i class="fas fa-train pe-2"></i>Train Types</h4>
+                <ul class="list-unstyled text-left">
+                    <li class="d-flex">
+                      <i class="fas fa-caret-right pe-2 mt-1"></i><p class="fw-bold pe-2 text-nowrap" >Nozomi :</p>
+                        <p>The fastest train stops at only the largest station, running at a maximum speed of 300 km/h.</p>
+                    </li>
+                    <li class="d-flex">
+                      <i class="fas fa-caret-right pe-2 mt-1"></i><p class="fw-bold pe-2 text-nowrap" >Mizuho :</p>
+                        <p>A limited-stop train supplementing the three existing limited express services. </p>
+                    </li>
+                    <li class="d-flex">
+                      <i class="fas fa-caret-right pe-2 mt-1"></i><p class="fw-bold pe-2 text-nowrap" >Sakura :</p>
+                        <p class="text-wrap">A high-speed train operate once every hou.r</p>
+                    </li>
+                </ul>
+            </div>
+          </div>
+      </div>
+  </div>
+
+{%endblock%}
+  
+{% block footer %}
+  <!-- Footer -->
+  <footer class="page-footer font-small text-light mt-5 border-top"  style="background-color: #232526;" >
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-2">© 2020 Copyright 
+        <a href="#"> AincradRailways.com</a>
+      </div>
+  </footer>
+  <!-- Footer -->
+{% endblock %}
+

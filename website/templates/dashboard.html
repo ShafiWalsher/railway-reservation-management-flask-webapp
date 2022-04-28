@@ -1,0 +1,61 @@
+<!--Extendind base.html-->
+
+{% extends "base.html" %}
+{% block title %} Home - Aincrad Railways {% endblock %}
+
+{% block content %}
+
+  <div class="contailer-lg">
+      <div class="p5 p-5">
+        <h1 class=" display-4 fw-bold text-center text-uppercase text-white">Dashboard</h1>
+        <div class="row justify-content-center text-dark">
+            <div class="card card-columns col-md-5 m-5 py-3 px-5" style="list-style:none;">
+                <h4 class="fw-bold text-center">Profile</h4>
+                <div class="divider div-transparent div-arrow-down my-3"></div>
+                <div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="mt-5 fs-5">
+                            {% set name = user.fname+' '+user.lname %}
+                            <li><span class="fw-bold">ID : </span>{% print(user.id) %}</li>
+                            <li><span class="fw-bold">Username : </span>{% print(name) %}</li>
+                            <li><span class="fw-bold">Email : </span>{% print(user.email) %}</li>
+                        </div>
+                        <div>
+                            <img style="border-radius: 100%;" src="/static/assets/default-pfp.png" class="img-fluid shadow" width="100px" height="auto" >
+                        </div>
+                    </div>
+                    <div class="text-right mt-5 fw-bold" >
+                        <a style="color:rgba(0,0,0,.75);" href="">Change Password</a><br>
+                        <a style="color:rgba(0,0,0,.75);" href="">Account Settings</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card card-columns col-md-5 m-5 py-3 px-4">
+                <h4 class="fw-bold text-center">Booked Tickets</h4>
+                {% if user.tickets %}
+                    <div class="divider div-transparent div-arrow-down my-3"></div>
+                    {% for ticket in user.tickets%}
+                        <div class="card my-3 py-4 shadow" style="list-style:none;background-color: rgba(0,0,0,.05);">
+                            <p class="fs-5 fw-bold text-center text-uppercase mb-3">{% print(ticket.location_s) %} <i class="fas fa-long-arrow-alt-right"></i> {% print(ticket.location_d) %}</p>
+                            <hr class="mb-4" style="width:70%; height:2px; margin:0 auto;">
+                            <div class="mx-4">
+                                <li><span class="fw-bold">Ticket No : </span>{% print(ticket.id )%}</li>
+                                <li><span class="fw-bold">Train No : </span>{% print(ticket.train_id )%}</li>
+                                <li><span class="fw-bold">Passanger Name : </span>{% print(ticket.user_name )%}</li>
+                                <li><span class="fw-bold">Train Name : </span>{% print(ticket.train_name )%}</li>
+                                <li><span class="fw-bold">Class : </span>{% print(ticket.train_class )%}</li>
+                                <li><span class="fw-bold">Booked Date : </span>{% print(ticket.date )%}</li>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                {% if not user.tickets %}
+                    <div class="divider div-transparent div-arrow-down my-3"></div>
+                    <p class="fst-italic fs-5 text-muted text-center mt-4">No booked tickets available..!!!!</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Linking CSS to Jinja Template-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!--Bootstrap CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    
+
+    <style>
+        section{
+            padding: 60px 0;
+        }
+        html {
+          overflow: scroll;
+          overflow-x: hidden;
+          scroll-behavior: smooth;
+        }
+
+        .nav-link {
+          color : rgba(36, 37, 39,0.9);
+        }
+        .nav-link:hover {
+          color : rgba(36, 37, 39,1);
+        }
+
+        ::-webkit-scrollbar
+        {
+          width: 8px !important;
+          background-color: RGB(36, 37, 39);
+        }
+
+        ::-webkit-scrollbar-thumb
+        {
+          border-radius: 10px;
+          box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+          background-color: RGB(248, 249, 251);
+        }
+
+
+        body{
+            scroll-behavior: smooth;
+            background: #000000; /* fallback for old browsers */
+            background: linear-gradient(to right, #000000, #434343);
+        }
+        
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            text-decoration: none;
+            color: rgba(255,255,255,.8);
+        }
+        .img-shadow{
+            box-shadow: 0 0 20px #232526;
+        }
+
+        /*Login & SignUp Page Styles*/
+
+        .bg-img{
+          background: linear-gradient(90deg,rgba(0,0,0,.35) 0%, rgba(0,0,0,.35) 100%), url('/static/assets/loginbg.png');
+          background-size:cover;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+
+        .divider{
+          position: relative;
+          margin: 30px 0;
+          height: 1px;
+        }
+        .div-transparent:before{
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 5%;
+          right: 5%;
+          width: 90%;
+          height: 1px;
+          background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+        }
+
+        .div-arrow-down:after{
+          content: "";
+          position: absolute;
+          z-index: 1;
+          top: -7px;
+          left: calc(50% - 7px);
+          width: 14px;
+          height: 14px;
+          transform: rotate(45deg);
+          background-color: white;
+          border-bottom: 1px solid rgb(48,49,51);
+          border-right: 1px solid rgb(48,49,51);
+        }
+        /*Login & SignUp Page Styles*/
+
+       /*About Page Styles*/
+       .abt-intro-bg{
+          background: linear-gradient(120deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,.95) 100%),url('/static/assets/about-bg.jpg');
+          background-position: bottom;
+          background-size: cover;
+          background-repeat: none;
+          height: 100vh;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <div class="container-xxl py-4 my-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-5 bg-light bg-gradient py-3 px-5 rounded-3 shadow-lg">
+                <div class="text-center mb-3">
+                    <img class="img-fluid form-logo" width="auto" height="120" src="/static/assets/Logo.png" alt="">
+                </div>
+                <div class="divider div-transparent div-arrow-down my-5"></div>
+                <p class="mb-2 fs-4 text-center fw-bold">ADD DATA TO STAION TABLE</p>
+                <p class="mb-3 fs-6 text-center">Plese enter your details.</p>
+                <form action="" method="POST">
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="" name="platform_no">
+                        <label for="floatingPassword">Platform NO.</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="" name="station">
+                        <label for="floatingPassword">Station Name</label>
+                    </div>
+                    
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="" name="t_id">
+                        <label for="floatingPassword">Train ID</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="" name="arr_time">
+                        <label for="floatingPassword">Arrival Time</label>
+                    </div>
+
+                    <div class="form-floating mb-4">
+                        <input type="text" class="form-control" id="floatingPassword" placeholder="" name="depart_time">
+                        <label for="floatingPassword">Departure Time</label>
+                    </div>
+
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-dark btn-block mb-4">ADD DATA</button>
+            
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
